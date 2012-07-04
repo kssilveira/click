@@ -21,14 +21,21 @@
 //
 // Author: silveira.kaue@gmail.com (Kaue Soares da Silveira)
 //
-// This file has the root class implementation for click.
+// This file has the root class for click.
 
-#include "click.h"
+#ifndef SRC_CLICK_CLICK_H_
+#define SRC_CLICK_CLICK_H_
 
 namespace click {
 
-Click::Click() {}
-
-void Click::Run() {}
+// Drives the execution.
+class Click {
+ public:
+  Click();
+  void Run();
+ private:
+};
 
 }  // namespace click
+
+#endif  // SRC_CLICK_CLICK_H_

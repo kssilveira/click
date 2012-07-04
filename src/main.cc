@@ -22,7 +22,7 @@
 // Author: silveira.kaue@gmail.com (Kaue Soares da Silveira)
 //
 // This is the main file.
-#include "click.h"
+#include "click/click.h"
 int main(int argc, char** argv) {
   click::Click click;
   click.Run();

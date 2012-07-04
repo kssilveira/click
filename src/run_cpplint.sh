@@ -1,3 +1,4 @@
+#!/bin/sh
 # Copyright (c) 2012 Kaue Soares da Silveira
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
@@ -21,13 +22,5 @@
 #
 # Author: silveira.kaue@gmail.com (Kaue Soares da Silveira)
 #
-# This is the makefile for the project.
-
-CXXFLAGS=-I.
-OBJ=main.o click/click.o
-
-all: ../bin/click
-	../bin/click
-
-../bin/click: $(OBJ)
-	$(CXX) -o $@ $^ $(LDFLAGS)
+# This script runs cpplint.py on all source code.
+find . | grep '\(\.cc$\|\.h$\)' | xargs python $HOME/.cpplint.py

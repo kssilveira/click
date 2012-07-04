@@ -23,6 +23,7 @@ http://sandofsky.com/blog/git-workflow.html
 ## Style
 
 http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
+http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py
 
 ## License
 
