@@ -5,7 +5,7 @@ control the mouse efficiently using the keyboard!
 
 ## Why?
 
-for those show use vi/emacs, screen, vimperator, but still sometimes have to lose time taking the hands of the keyboard to click somewhere, now you can click efficiently anywhere using only the keyboard.
+for those who use vi/emacs, screen, vimperator, but still sometimes have to lose time taking the hands of the keyboard to click somewhere, now you can click efficiently anywhere using only the keyboard.
 
 ## How?
 
