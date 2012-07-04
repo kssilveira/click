@@ -31,6 +31,7 @@
 namespace click {
 
 class Model;
+class Navigator;
 class View;
 
 // This is the presenter.
@@ -38,7 +39,12 @@ class Presenter {
  public:
   // Takes ownership of @p model and @p view.
   Presenter(Model* model, View* view);
+  ~Presenter();
   void Run();
+
+  // Display functions.
+  void DrawMap(int window_width, int window_height, int map_width,
+               int map_height, int x, int y);
 
   // Callbacks.
   void KeyboardCallback(unsigned char key, bool is_shift, bool is_ctrl,
@@ -48,6 +54,8 @@ class Presenter {
  private:
   Model* model_;
   View* view_;
+  Navigator* navigator_;
+  bool is_first_call_to_display_;
   DISALLOW_COPY_AND_ASSIGN(Presenter);
 };
 

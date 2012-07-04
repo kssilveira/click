@@ -28,6 +28,7 @@ LDFLAGS = -lglut -lGLU -lGL -lXtst -lgflags
 OBJ=main.o \
 		click/click.o \
 		click/model.o \
+		click/navigator.o \
 		click/presenter.o \
 		click/view.o
 

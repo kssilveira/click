@@ -21,52 +21,15 @@
 //
 // Author: silveira.kaue@gmail.com (Kaue Soares da Silveira)
 //
-// This file has the View classes.
-
-#ifndef SRC_CLICK_VIEW_H_
-#define SRC_CLICK_VIEW_H_
-
-#include "click/macros.h"
+// This is the navigator implementation
+#include "click/navigator.h"
 
 namespace click {
 
-class Presenter;
+Navigator::Navigator() {}
 
-// This is the view. There should be only one instance of this class.
-class View {
- public:
-  View(int argc, char** argv);
-
-  void set_presenter(Presenter* presenter) {
-    presenter_ = presenter;
-  }
-  int width();
-  int height();
-
-  void CreateWindow();
-  void MainLoop();
-  bool IsFullScreen();
-  void SaveScreen();
-  void LoadScreen(int width, int height, int x, int y);
-
-  // Display functions.
-  // Must be called before calling any other display function.
-  void BeginDisplay();
-  // Must be called after calling all other display functions.
-  void EndDisplay();
-
-  // Callbacks.
-  void DisplayCallback();
-  void KeyboardCallback(unsigned char key, int x, int y);
-  void SpecialKeyCallback(int key, int x, int y);
-  void ReshapeCallback(int width, int height);
-  void MouseCallback(int button, int state, int x, int y);
-
- private:
-  Presenter* presenter_;
-  DISALLOW_COPY_AND_ASSIGN(View);
-};
+void Navigator::Navigate(int window_width, int window_height,
+                         int* map_width, int* map_height, int* x, int* y) {
+}
 
 }  // namespace click
-
-#endif  // SRC_CLICK_VIEW_H_

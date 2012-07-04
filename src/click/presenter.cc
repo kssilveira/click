@@ -25,16 +25,26 @@
 #include "click/presenter.h"
 
 #include "click/model.h"
+#include "click/navigator.h"
 #include "click/view.h"
 
 namespace click {
 
 Presenter::Presenter(Model* model, View* view)
-    : model_(model), view_(view) {}
+    : model_(model), view_(view), navigator_(new Navigator()),
+      is_first_call_to_display_(true) {
+  view_->set_presenter(this);
+}
 
 void Presenter::Run() {
   view_->CreateWindow();
   view_->MainLoop();
+}
+
+Presenter::~Presenter() {
+  delete navigator_;
+  delete view_;
+  delete model_;
 }
 
 void Presenter::KeyboardCallback(unsigned char key, bool is_shift,
@@ -42,6 +52,29 @@ void Presenter::KeyboardCallback(unsigned char key, bool is_shift,
 }
 
 void Presenter::DisplayCallback() {
+  if (!view_->IsFullScreen()) {
+    return;
+  }
+
+  if (is_first_call_to_display_) {
+    is_first_call_to_display_ = false;
+    view_->SaveScreen();
+  }
+
+  int window_width = view_->width(), window_height = view_->height();
+  int map_width = window_width, map_height = window_height, x = 0, y = 0;
+  navigator_->Navigate(window_width, window_height, &map_width, &map_height,
+                       &x, &y);
+
+  view_->BeginDisplay();
+  // TODO(kaue): implement zoom.
+  view_->LoadScreen(window_width, window_height, 0, 0);
+  DrawMap(window_width, window_height, map_width, map_height, x, y);
+  view_->EndDisplay();
+}
+
+void Presenter::DrawMap(int window_width, int window_height, int map_width,
+                        int map_height, int x, int y) {
 }
 
 }  // namespace click

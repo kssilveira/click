@@ -65,6 +65,14 @@ View::View(int argc, char** argv) {
   glutInit(&argc, argv);
 }
 
+int View::width() {
+  return glutGet((GLenum) GLUT_WINDOW_WIDTH);
+}
+
+int View::height() {
+  return glutGet((GLenum) GLUT_WINDOW_HEIGHT);
+}
+
 void View::CreateWindow() {
   glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
   const char* kWindowName = "";
@@ -79,6 +87,24 @@ void View::CreateWindow() {
 
 void View::MainLoop() {
   glutMainLoop();
+}
+
+bool View::IsFullScreen() {
+  int screen_width = glutGet((GLenum) GLUT_SCREEN_WIDTH);
+  int screen_height = glutGet((GLenum) GLUT_SCREEN_HEIGHT);
+  return width() == screen_width && height() == screen_height;
+}
+
+void View::SaveScreen() {
+}
+
+void View::LoadScreen(int width, int height, int x, int y) {
+}
+
+void View::BeginDisplay() {
+}
+
+void View::EndDisplay() {
 }
 
 void View::DisplayCallback() {
