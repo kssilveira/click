@@ -34,6 +34,8 @@ namespace click {
 class View {
  public:
   View(int argc, char** argv);
+  void CreateWindow();
+  void MainLoop();
  private:
   DISALLOW_COPY_AND_ASSIGN(View);
 };

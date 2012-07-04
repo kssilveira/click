@@ -32,6 +32,9 @@ namespace click {
 Presenter::Presenter(Model* model, View* view)
     : model_(model), view_(view) {}
 
-void Presenter::Run() {}
+void Presenter::Run() {
+  view_->CreateWindow();
+  view_->MainLoop();
+}
 
 }  // namespace click

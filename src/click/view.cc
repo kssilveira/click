@@ -28,8 +28,34 @@
 
 namespace click {
 
+namespace {
+
+void DisplayFunc() {}
+void KeyboardFunc(unsigned char key, int x, int y) {}
+void SpecialFunc(int key, int x, int y) {}
+void ReshapeFunc(int width, int height) {}
+void MouseFunc(int button, int state, int x, int y) {}
+
+}  // namespace
+
 View::View(int argc, char** argv) {
   glutInit(&argc, argv);
+}
+
+void View::CreateWindow() {
+  glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+  const char* kWindowName = "";
+  glutCreateWindow(kWindowName);
+  glutFullScreen();
+  glutDisplayFunc(DisplayFunc);
+  glutKeyboardFunc(KeyboardFunc);
+  glutSpecialFunc(SpecialFunc);
+  glutReshapeFunc(ReshapeFunc);
+  glutMouseFunc(MouseFunc);
+}
+
+void View::MainLoop() {
+  glutMainLoop();
 }
 
 }  // namespace click
