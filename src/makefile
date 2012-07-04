@@ -24,6 +24,7 @@
 # This is the makefile for the project.
 
 CXXFLAGS=-I.
+LDFLAGS = -lglut -lGLU -lGL -lXtst -lgflags
 OBJ=main.o \
 		click/click.o \
 		click/model.o \

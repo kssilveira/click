@@ -31,13 +31,15 @@
 
 namespace click {
 
-Click::Click() {}
+Click::Click(int argc, char** argv)
+    : presenter_(new Presenter(new Model(), new View(argc, argv))) {}
+
+Click::~Click() {
+  delete presenter_;
+}
 
 void Click::Run() {
-  Model* model = new Model();
-  View* view = new View();
-  Presenter presenter(model, view);
-  presenter.Run();
+  presenter_->Run();
 }
 
 }  // namespace click

@@ -24,7 +24,7 @@
 // This is the main file.
 #include "click/click.h"
 int main(int argc, char** argv) {
-  click::Click click;
+  click::Click click(argc, argv);
   click.Run();
   return 0;
 }

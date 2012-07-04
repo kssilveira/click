@@ -30,12 +30,16 @@
 
 namespace click {
 
+class Presenter;
+
 // Drives the execution.
 class Click {
  public:
-  Click();
+  Click(int argc, char** argv);
+  ~Click();
   void Run();
  private:
+  Presenter* presenter_;
   DISALLOW_COPY_AND_ASSIGN(Click);
 };
 

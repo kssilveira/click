@@ -24,8 +24,12 @@
 // This is the view implementation.
 #include "click/view.h"
 
+#include <GL/glut.h>
+
 namespace click {
 
-View::View() {}
+View::View(int argc, char** argv) {
+  glutInit(&argc, argv);
+}
 
 }  // namespace click

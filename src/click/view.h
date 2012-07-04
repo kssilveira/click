@@ -33,7 +33,7 @@ namespace click {
 // This is the view.
 class View {
  public:
-  View();
+  View(int argc, char** argv);
  private:
   DISALLOW_COPY_AND_ASSIGN(View);
 };
