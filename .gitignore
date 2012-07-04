@@ -13,3 +13,5 @@
 
 # other
 *~
+.*.swp
+src/click
