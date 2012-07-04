@@ -30,13 +30,29 @@
 
 namespace click {
 
-// This is the view.
+class Presenter;
+
+// This is the view. There should be only one instance of this class.
 class View {
  public:
   View(int argc, char** argv);
+
+  void set_presenter(Presenter* presenter) {
+    presenter_ = presenter;
+  }
+
   void CreateWindow();
   void MainLoop();
+
+  // Callbacks.
+  void DisplayCallback();
+  void KeyboardCallback(unsigned char key, int x, int y);
+  void SpecialKeyCallback(int key, int x, int y);
+  void ReshapeCallback(int width, int height);
+  void MouseCallback(int button, int state, int x, int y);
+
  private:
+  Presenter* presenter_;
   DISALLOW_COPY_AND_ASSIGN(View);
 };
 

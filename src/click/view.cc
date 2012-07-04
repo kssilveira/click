@@ -26,19 +26,42 @@
 
 #include <GL/glut.h>
 
+#include <cassert>
+
+#include "click/presenter.h"
+
 namespace click {
 
 namespace {
 
-void DisplayFunc() {}
-void KeyboardFunc(unsigned char key, int x, int y) {}
-void SpecialFunc(int key, int x, int y) {}
-void ReshapeFunc(int width, int height) {}
-void MouseFunc(int button, int state, int x, int y) {}
+// Used in glut callbacks.
+static View* g_view = NULL;
+
+void DisplayFunc() {
+  g_view->DisplayCallback();
+}
+
+void KeyboardFunc(unsigned char key, int x, int y) {
+  g_view->KeyboardCallback(key, x, y);
+}
+
+void SpecialFunc(int key, int x, int y) {
+  g_view->SpecialKeyCallback(key, x, y);
+}
+
+void ReshapeFunc(int width, int height) {
+  g_view->ReshapeCallback(width, height);
+}
+
+void MouseFunc(int button, int state, int x, int y) {
+  g_view->MouseCallback(button, state, x, y);
+}
 
 }  // namespace
 
 View::View(int argc, char** argv) {
+  assert(g_view == NULL);
+  g_view = this;
   glutInit(&argc, argv);
 }
 
@@ -56,6 +79,27 @@ void View::CreateWindow() {
 
 void View::MainLoop() {
   glutMainLoop();
+}
+
+void View::DisplayCallback() {
+  presenter_->DisplayCallback();
+}
+
+void View::KeyboardCallback(unsigned char key, int x, int y) {
+  int special = glutGetModifiers();
+  bool is_shift = special & GLUT_ACTIVE_SHIFT;
+  bool is_ctrl = special & GLUT_ACTIVE_CTRL;
+  bool is_alt = special & GLUT_ACTIVE_ALT;
+  presenter_->KeyboardCallback(key, is_shift, is_ctrl, is_alt);
+}
+
+void View::SpecialKeyCallback(int key, int x, int y) {
+}
+
+void View::ReshapeCallback(int width, int height) {
+}
+
+void View::MouseCallback(int button, int state, int x, int y) {
 }
 
 }  // namespace click

@@ -39,6 +39,12 @@ class Presenter {
   // Takes ownership of @p model and @p view.
   Presenter(Model* model, View* view);
   void Run();
+
+  // Callbacks.
+  void KeyboardCallback(unsigned char key, bool is_shift, bool is_ctrl,
+                        bool is_alt);
+  void DisplayCallback();
+
  private:
   Model* model_;
   View* view_;

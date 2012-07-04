@@ -37,4 +37,11 @@ void Presenter::Run() {
   view_->MainLoop();
 }
 
+void Presenter::KeyboardCallback(unsigned char key, bool is_shift,
+                                 bool is_ctrl, bool is_alt) {
+}
+
+void Presenter::DisplayCallback() {
+}
+
 }  // namespace click
