@@ -1,0 +1,1 @@
+ * cancel current execution if another instance is already executing (using a lock file)

@@ -15,6 +15,16 @@ divinding the screen recursively so that it is possible to address any pixels wi
 
 mouse movement, left/right/middle/double click, drag-and-drop.
 
+## Branching Model
+
+http://nvie.com/posts/a-successful-git-branching-model/
+http://sandofsky.com/blog/git-workflow.html
+
+## Style
+
+http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
+http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py
+
 ## License
 
 MIT License (MIT).
