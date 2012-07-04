@@ -21,23 +21,30 @@
 //
 // Author: silveira.kaue@gmail.com (Kaue Soares da Silveira)
 //
-// This file has the root class implementation for click.
+// This file has the Presenter classes.
 
-#include "click/click.h"
+#ifndef SRC_CLICK_PRESENTER_H_
+#define SRC_CLICK_PRESENTER_H_
 
-#include "click/model.h"
-#include "click/presenter.h"
-#include "click/view.h"
+#include "click/macros.h"
 
 namespace click {
 
-Click::Click() {}
+class Model;
+class View;
 
-void Click::Run() {
-  Model* model = new Model();
-  View* view = new View();
-  Presenter presenter(model, view);
-  presenter.Run();
-}
+// This is the presenter.
+class Presenter {
+ public:
+  // Takes ownership of @p model and @p view.
+  Presenter(Model* model, View* view);
+  void Run();
+ private:
+  Model* model_;
+  View* view_;
+  DISALLOW_COPY_AND_ASSIGN(Presenter);
+};
 
 }  // namespace click
+
+#endif  // SRC_CLICK_PRESENTER_H_

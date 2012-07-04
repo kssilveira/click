@@ -24,7 +24,11 @@
 # This is the makefile for the project.
 
 CXXFLAGS=-I.
-OBJ=main.o click/click.o
+OBJ=main.o \
+		click/click.o \
+		click/model.o \
+		click/presenter.o \
+		click/view.o
 
 all: ../bin/click
 	../bin/click

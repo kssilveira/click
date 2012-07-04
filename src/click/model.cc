@@ -21,23 +21,11 @@
 //
 // Author: silveira.kaue@gmail.com (Kaue Soares da Silveira)
 //
-// This file has the root class implementation for click.
-
-#include "click/click.h"
-
+// This is the model implementation
 #include "click/model.h"
-#include "click/presenter.h"
-#include "click/view.h"
 
 namespace click {
 
-Click::Click() {}
-
-void Click::Run() {
-  Model* model = new Model();
-  View* view = new View();
-  Presenter presenter(model, view);
-  presenter.Run();
-}
+Model::Model() {}
 
 }  // namespace click

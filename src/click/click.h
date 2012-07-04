@@ -26,6 +26,8 @@
 #ifndef SRC_CLICK_CLICK_H_
 #define SRC_CLICK_CLICK_H_
 
+#include "click/macros.h"
+
 namespace click {
 
 // Drives the execution.
@@ -34,6 +36,7 @@ class Click {
   Click();
   void Run();
  private:
+  DISALLOW_COPY_AND_ASSIGN(Click);
 };
 
 }  // namespace click

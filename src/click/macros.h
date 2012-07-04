@@ -21,23 +21,15 @@
 //
 // Author: silveira.kaue@gmail.com (Kaue Soares da Silveira)
 //
-// This file has the root class implementation for click.
+// Commonly used macros.
+//
+// A macro to disallow the copy constructor and operator= functions
+// This should be used in the private: declarations for a class
+#ifndef SRC_CLICK_MACROS_H_
+#define SRC_CLICK_MACROS_H_
 
-#include "click/click.h"
+#define DISALLOW_COPY_AND_ASSIGN(TypeName) \
+  TypeName(const TypeName&);               \
+  void operator=(const TypeName&)
 
-#include "click/model.h"
-#include "click/presenter.h"
-#include "click/view.h"
-
-namespace click {
-
-Click::Click() {}
-
-void Click::Run() {
-  Model* model = new Model();
-  View* view = new View();
-  Presenter presenter(model, view);
-  presenter.Run();
-}
-
-}  // namespace click
+#endif  // SRC_CLICK_MACROS_H_
