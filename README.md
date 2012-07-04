@@ -20,6 +20,10 @@ mouse movement, left/right/middle/double click, drag-and-drop.
 http://nvie.com/posts/a-successful-git-branching-model/
 http://sandofsky.com/blog/git-workflow.html
 
+## Style
+
+http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
+
 ## License
 
 MIT License (MIT).
