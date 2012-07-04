@@ -21,10 +21,15 @@
 //
 // Author: silveira.kaue@gmail.com (Kaue Soares da Silveira)
 //
-// This is the main file.
-#include "click/click.h"
-int main(int argc, char** argv) {
-  click::Click click(argc, argv);
-  click.Run();
-  return 0;
+// This is the navigator implementation
+#include "click/navigator.h"
+
+namespace click {
+
+Navigator::Navigator() {}
+
+void Navigator::Navigate(int window_width, int window_height,
+                         int* map_width, int* map_height, int* x, int* y) {
 }
+
+}  // namespace click

@@ -21,10 +21,25 @@
 //
 // Author: silveira.kaue@gmail.com (Kaue Soares da Silveira)
 //
-// This is the main file.
-#include "click/click.h"
-int main(int argc, char** argv) {
-  click::Click click(argc, argv);
-  click.Run();
-  return 0;
-}
+// This file has the Navigator classes.
+
+#ifndef SRC_CLICK_NAVIGATOR_H_
+#define SRC_CLICK_NAVIGATOR_H_
+
+#include "click/macros.h"
+
+namespace click {
+
+// This is the navigator.
+class Navigator {
+ public:
+  Navigator();
+  void Navigate(int window_width, int window_height, int* map_width,
+                int* map_height, int* x, int* y);
+ private:
+  DISALLOW_COPY_AND_ASSIGN(Navigator);
+};
+
+}  // namespace click
+
+#endif  // SRC_CLICK_NAVIGATOR_H_

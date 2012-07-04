@@ -23,10 +23,12 @@
 #
 # This is the makefile for the project.
 
-CXXFLAGS=-I.
+CXXFLAGS=-I. -Wall
+LDFLAGS = -lglut -lGLU -lGL -lXtst
 OBJ=main.o \
 		click/click.o \
 		click/model.o \
+		click/navigator.o \
 		click/presenter.o \
 		click/view.o
 
