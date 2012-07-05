@@ -51,21 +51,22 @@ Presenter::~Presenter() {
 
 void Presenter::KeyboardCallback(unsigned char key, bool is_shift,
                                  bool is_ctrl, bool is_alt) {
+  const int kEsc = 27, kBackspace = 8, kEnter = 13;
   navigator_->Push(key);
   switch (key) {
     case '!':
     case '[':
     case ']':
-    case 27:
+    case kEsc:
       exit(0);
       break;
     case '0':
     case 'z':
-    case 8:  // backspace
+    case kBackspace:
     case ' ':
       navigator_->Pop();
       break;
-    case 13:  // enter
+    case kEnter:
       view_->MouseClick(is_shift, is_ctrl, is_alt);
       break;
     default:

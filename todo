@@ -1,4 +1,3 @@
- * document current features, how to add keyboard shortcut
  * cancel current execution if another instance is already executing (using a lock file)
  * implement zoom
  * move Navigator and KeyMap to Model

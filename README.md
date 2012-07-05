@@ -15,6 +15,20 @@ divinding the screen recursively so that it is possible to address any pixels wi
 
 mouse movement, left/right/middle/double click, drag-and-drop.
 
+## Help
+
+create a keyboard shortcut that executes click (System->Preferences->Keyboard Shortcuts)
+
+commands:
+- '1' to '9': move the mouse
+- '0', 'z', <space>, <backspace>: go back one level
+- <enter>: left click
+- <shift+enter>: right click
+- <shift+alt+enter>: middle click
+- <ctrl+shift+enter>: left drag
+- <ctrl+alt+shift+enter>: double click
+- '!', '[', ']', <esc>: exit
+
 ## Branching Model
 
 http://nvie.com/posts/a-successful-git-branching-model/

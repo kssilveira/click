@@ -1,0 +1,4 @@
+Version 0.1, 20120604
+ * mouse movement using 1-9 keymap
+ * left, middle, right, double click
+ * drag-and-drop
