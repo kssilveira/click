@@ -25,6 +25,7 @@
 #include "click/view.h"
 
 #include <GL/glut.h>
+#include <X11/extensions/XTest.h>
 
 #include <cassert>
 #include <cctype>
@@ -213,9 +214,51 @@ void View::DrawSquare(int i, int j, int division,
 }
 
 void View::MouseMove(int x, int y) {
+  int window_pos_x = glutGet((GLenum)GLUT_WINDOW_X);
+  int window_pos_y = glutGet((GLenum)GLUT_WINDOW_Y);
+  x += window_pos_x;
+  y += window_pos_y;
+  const char* display_name = getenv("DISPLAY");
+  Display* display = XOpenDisplay(display_name);
+  int kScreenNumber = -1;
+  int kDelay = 10;
+  XTestFakeMotionEvent(display, kScreenNumber, x, y, kDelay);
+  XFlush(display);
 }
 
 void View::MouseClick(bool is_shift, bool is_ctrl, bool is_alt) {
+  const char* display_name = getenv("DISPLAY");
+  Display* display = XOpenDisplay(display_name);
+  glutHideWindow();
+  enum { MOUSE_BUTTON_LEFT = 1, MOUSE_BUTTON_MIDDLE, MOUSE_BUTTON_RIGHT };
+  int button = MOUSE_BUTTON_LEFT;
+  if (is_ctrl && is_shift) {
+    button = MOUSE_BUTTON_LEFT;
+  } else if (is_shift && is_alt) {
+    button = MOUSE_BUTTON_MIDDLE;
+  } else if (is_shift) {
+    button = MOUSE_BUTTON_RIGHT;
+  } else if (is_alt) {
+    button = MOUSE_BUTTON_LEFT;
+  }
+  int kDelay = 10;
+  if (!(is_ctrl && is_alt) || (is_ctrl && is_alt && is_shift)) {
+    const bool kIsPress = true;
+    XTestFakeButtonEvent(display, button, kIsPress, kDelay);
+  }
+  if (!is_ctrl || (is_ctrl && is_alt)) {  // not drag-and-drop
+    const bool kIsPress = false;
+    XTestFakeButtonEvent(display, button, kIsPress, kDelay);
+  }
+  if (is_ctrl && is_alt && is_shift) {  // double click
+    bool is_press = true;
+    XTestFakeButtonEvent(display, button, is_press, kDelay);
+    is_press = false;
+    XTestFakeButtonEvent(display, button, is_press, kDelay);
+  }
+  XFlush(display);
+  exit(0);
+  glutShowWindow();
 }
 
 void View::DisplayCallback() {
