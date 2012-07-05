@@ -17,6 +17,7 @@ mouse movement, left/right/middle/double click, drag-and-drop.
 
 ## Installing
 
+    $ sudo apt-get install freeglut3 freeglut3-dev binutils-gold libxtst-dev
     $ git clone git://github.com/kssilveira/click.git
     $ cd click && make
 
