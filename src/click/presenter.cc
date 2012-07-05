@@ -56,17 +56,18 @@ void Presenter::DisplayCallback() {
     return;
   }
 
-  if (is_first_call_to_display_) {
-    is_first_call_to_display_ = false;
-    view_->SaveScreen();
-  }
-
   int window_width = view_->width(), window_height = view_->height();
   int map_width = window_width, map_height = window_height, x = 0, y = 0;
   navigator_->Navigate(window_width, window_height, &map_width, &map_height,
                        &x, &y);
 
   view_->BeginDisplay();
+
+  if (is_first_call_to_display_) {
+    is_first_call_to_display_ = false;
+    view_->SaveScreen();
+  }
+
   // TODO(kaue): implement zoom.
   view_->LoadScreen(window_width, window_height, 0, 0);
   DrawMap(window_width, window_height, map_width, map_height, x, y);

@@ -42,12 +42,14 @@ class View {
   }
   int width();
   int height();
+  int screen_width();
+  int screen_height();
 
   void CreateWindow();
   void MainLoop();
   bool IsFullScreen();
   void SaveScreen();
-  void LoadScreen(int width, int height, int x, int y);
+  void LoadScreen(int map_width, int map_height, int x, int y);
 
   // Display functions.
   // Must be called before calling any other display function.
@@ -64,6 +66,7 @@ class View {
 
  private:
   Presenter* presenter_;
+  unsigned char* screen_pixels_;
   DISALLOW_COPY_AND_ASSIGN(View);
 };
 

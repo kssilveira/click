@@ -73,6 +73,14 @@ int View::height() {
   return glutGet((GLenum) GLUT_WINDOW_HEIGHT);
 }
 
+int View::screen_width() {
+  return glutGet((GLenum) GLUT_SCREEN_WIDTH);
+}
+
+int View::screen_height() {
+  return glutGet((GLenum) GLUT_SCREEN_HEIGHT);
+}
+
 void View::CreateWindow() {
   glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
   const char* kWindowName = "";
@@ -83,6 +91,7 @@ void View::CreateWindow() {
   glutSpecialFunc(SpecialFunc);
   glutReshapeFunc(ReshapeFunc);
   glutMouseFunc(MouseFunc);
+  screen_pixels_ = new unsigned char[3 * screen_width() * screen_height()];
 }
 
 void View::MainLoop() {
@@ -90,21 +99,64 @@ void View::MainLoop() {
 }
 
 bool View::IsFullScreen() {
-  int screen_width = glutGet((GLenum) GLUT_SCREEN_WIDTH);
-  int screen_height = glutGet((GLenum) GLUT_SCREEN_HEIGHT);
-  return width() == screen_width && height() == screen_height;
+  return width() == screen_width() && height() == screen_height();
 }
 
 void View::SaveScreen() {
+  // TODO(kaue): change to window_x() and window_y()
+  glReadPixels(0, 0, width(), height(), GL_RGB, GL_UNSIGNED_BYTE,
+               screen_pixels_);
+  // TODO(kaue): make variable texture a member of the class.
+  GLuint texture;
+  glGenTextures(1, &texture);
+  glBindTexture(GL_TEXTURE_2D, texture);
+
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+  const int kLevel = 0;
+  const int kBorder = 0;
+  glTexImage2D(GL_TEXTURE_2D, kLevel, GL_RGB, width(), height(), kBorder,
+      GL_RGB, GL_UNSIGNED_BYTE, screen_pixels_);
 }
 
-void View::LoadScreen(int width, int height, int x, int y) {
+void View::LoadScreen(int map_width, int map_height, int x, int y) {
+  glEnable(GL_TEXTURE_2D);
+  glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+
+  double points[][2] = {
+      {x / static_cast<double>(width()),
+       y / static_cast<double>(height())},
+      {(x + map_width) / static_cast<double>(width()),
+       (y + map_height) / static_cast<double>(height())}};
+
+  glBegin(GL_POLYGON);
+    glTexCoord2f(points[0][0], points[0][1]);
+    glVertex2i(0, 0);
+    glTexCoord2f(points[0][0], points[1][1]);
+    glVertex2i(0, height());
+    glTexCoord2f(points[1][0], points[1][1]);
+    glVertex2i(width(), height());
+    glTexCoord2f(points[1][0], points[0][1]);
+    glVertex2i(width(), 0);
+  glEnd();
+
+  glDisable(GL_TEXTURE_2D);
 }
 
 void View::BeginDisplay() {
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  glViewport(0, 0, width(), height());
+  gluOrtho2D(0, width(), 0, height());
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
 }
 
 void View::EndDisplay() {
+  glutSwapBuffers();
 }
 
 void View::DisplayCallback() {
