@@ -67,8 +67,6 @@ void Presenter::DisplayCallback() {
     is_first_call_to_display_ = false;
     view_->SaveScreen();
   }
-
-  // TODO(kaue): implement zoom.
   view_->LoadScreen(window_width, window_height, 0, 0);
   DrawMap(window_width, window_height, map_width, map_height, x, y);
   view_->EndDisplay();
@@ -76,6 +74,15 @@ void Presenter::DisplayCallback() {
 
 void Presenter::DrawMap(int window_width, int window_height, int map_width,
                         int map_height, int x, int y) {
+  int division = 3;
+  for (int i = 0; i < division; i++) {
+    for (int j = 0; j < division; j++) {
+      char letter = i * division + j + '0';
+      view_->DrawSquare(i, j, division, map_width, map_height, x, y,
+                        letter);
+    }
+  }
+  view_->MouseMove(x + map_width / 2, window_height - y - map_height / 2);
 }
 
 }  // namespace click
