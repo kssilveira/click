@@ -28,8 +28,31 @@ namespace click {
 
 Navigator::Navigator() {}
 
-void Navigator::Navigate(int window_width, int window_height,
+void Navigator::Navigate(int division, int window_width, int window_height,
                          int* map_width, int* map_height, int* x, int* y) {
+  for (size_t i = 0; i < path_.size(); ++i) {
+    *map_width /= division;
+    *map_height /= division;
+
+    char letter = path_[i] - '1';
+    int cx = 0, cy = 0;
+    cx = letter % division;
+    cy = letter / division;
+    *x += cx * *map_width;
+    *y += cy * *map_height;
+  }
+}
+
+void Navigator::Push(char letter) {
+  if (letter >= '1' && letter <= '9') {
+    path_.push_back(letter);
+  }
+}
+
+void Navigator::Pop() {
+  if (!path_.empty()) {
+    path_.pop_back();
+  }
 }
 
 }  // namespace click

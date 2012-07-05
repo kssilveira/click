@@ -26,6 +26,8 @@
 #ifndef SRC_CLICK_NAVIGATOR_H_
 #define SRC_CLICK_NAVIGATOR_H_
 
+#include <vector>
+
 #include "click/macros.h"
 
 namespace click {
@@ -34,9 +36,13 @@ namespace click {
 class Navigator {
  public:
   Navigator();
-  void Navigate(int window_width, int window_height, int* map_width,
-                int* map_height, int* x, int* y);
+  void Navigate(int division, int window_width, int window_height,
+                int* map_width, int* map_height, int* x, int* y);
+  void Push(char letter);
+  void Pop();
  private:
+  // The current path.
+  std::vector<char> path_;
   DISALLOW_COPY_AND_ASSIGN(Navigator);
 };
 

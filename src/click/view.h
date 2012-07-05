@@ -48,14 +48,22 @@ class View {
   void CreateWindow();
   void MainLoop();
   bool IsFullScreen();
-  void SaveScreen();
-  void LoadScreen(int map_width, int map_height, int x, int y);
+  void PostRedisplay();
+
+  // Must be called before calling display function.
+  void BeginDisplay();
+  // Must be called after calling all display functions.
+  void EndDisplay();
 
   // Display functions.
-  // Must be called before calling any other display function.
-  void BeginDisplay();
-  // Must be called after calling all other display functions.
-  void EndDisplay();
+  void SaveScreen();
+  void LoadScreen(int map_width, int map_height, int x, int y);
+  void DrawSquare(int i, int j, int divition, int map_width, int map_height,
+                  int dx, int dy, char letter);
+
+  // Actuator functions.
+  void MouseMove(int x, int y);
+  void MouseClick(bool is_shift, bool is_ctrl, bool is_alt);
 
   // Callbacks.
   void DisplayCallback();

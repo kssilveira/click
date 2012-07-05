@@ -43,8 +43,8 @@ class Presenter {
   void Run();
 
   // Display functions.
-  void DrawMap(int window_width, int window_height, int map_width,
-               int map_height, int x, int y);
+  void DrawMap(int division, int window_width, int window_height,
+               int map_width, int map_height, int x, int y);
 
   // Callbacks.
   void KeyboardCallback(unsigned char key, bool is_shift, bool is_ctrl,
