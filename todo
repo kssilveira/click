@@ -1,3 +1,6 @@
  * cancel current execution if another instance is already executing (using a lock file)
  * implement zoom
  * move Navigator and KeyMap to Model
+ * save state persistently
+ * add keymaps
+ * change color index

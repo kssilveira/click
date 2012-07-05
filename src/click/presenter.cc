@@ -24,6 +24,8 @@
 // This is the presenter implementation.
 #include "click/presenter.h"
 
+#include <cstdlib>
+
 #include "click/model.h"
 #include "click/navigator.h"
 #include "click/view.h"
@@ -49,6 +51,27 @@ Presenter::~Presenter() {
 
 void Presenter::KeyboardCallback(unsigned char key, bool is_shift,
                                  bool is_ctrl, bool is_alt) {
+  navigator_->Push(key);
+  switch (key) {
+    case '!':
+    case '[':
+    case ']':
+    case 27:
+      exit(0);
+      break;
+    case '0':
+    case 'z':
+    case 8:  // backspace
+    case ' ':
+      navigator_->Pop();
+      break;
+    case 13:  // enter
+      view_->MouseClick(is_shift, is_ctrl, is_alt);
+      break;
+    default:
+      break;
+  }
+  view_->PostRedisplay();
 }
 
 void Presenter::DisplayCallback() {
@@ -58,8 +81,9 @@ void Presenter::DisplayCallback() {
 
   int window_width = view_->width(), window_height = view_->height();
   int map_width = window_width, map_height = window_height, x = 0, y = 0;
-  navigator_->Navigate(window_width, window_height, &map_width, &map_height,
-                       &x, &y);
+  int division = 3;
+  navigator_->Navigate(division, window_width, window_height,
+                       &map_width, &map_height, &x, &y);
 
   view_->BeginDisplay();
 
@@ -68,16 +92,16 @@ void Presenter::DisplayCallback() {
     view_->SaveScreen();
   }
   view_->LoadScreen(window_width, window_height, 0, 0);
-  DrawMap(window_width, window_height, map_width, map_height, x, y);
+  DrawMap(division, window_width, window_height, map_width, map_height, x,
+          y);
   view_->EndDisplay();
 }
 
-void Presenter::DrawMap(int window_width, int window_height, int map_width,
-                        int map_height, int x, int y) {
-  int division = 3;
+void Presenter::DrawMap(int division, int window_width, int window_height,
+                        int map_width, int map_height, int x, int y) {
   for (int i = 0; i < division; i++) {
     for (int j = 0; j < division; j++) {
-      char letter = i * division + j + '0';
+      char letter = j * division + i + '1';
       view_->DrawSquare(i, j, division, map_width, map_height, x, y,
                         letter);
     }

@@ -104,6 +104,10 @@ bool View::IsFullScreen() {
   return width() == screen_width() && height() == screen_height();
 }
 
+void View::PostRedisplay() {
+  glutPostRedisplay();
+}
+
 void View::BeginDisplay() {
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
@@ -209,6 +213,9 @@ void View::DrawSquare(int i, int j, int division,
 }
 
 void View::MouseMove(int x, int y) {
+}
+
+void View::MouseClick(bool is_shift, bool is_ctrl, bool is_alt) {
 }
 
 void View::DisplayCallback() {

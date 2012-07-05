@@ -48,6 +48,7 @@ class View {
   void CreateWindow();
   void MainLoop();
   bool IsFullScreen();
+  void PostRedisplay();
 
   // Must be called before calling display function.
   void BeginDisplay();
@@ -62,6 +63,7 @@ class View {
 
   // Actuator functions.
   void MouseMove(int x, int y);
+  void MouseClick(bool is_shift, bool is_ctrl, bool is_alt);
 
   // Callbacks.
   void DisplayCallback();
