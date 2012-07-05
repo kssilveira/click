@@ -21,23 +21,23 @@ create a keyboard shortcut that executes click (System->Preferences->Keyboard Sh
 
 commands:
 - '1' to '9': move the mouse
-- '0', 'z', <space>, <backspace>: go back one level
-- <enter>: left click
-- <shift+enter>: right click
-- <shift+alt+enter>: middle click
-- <ctrl+shift+enter>: left drag
-- <ctrl+alt+shift+enter>: double click
-- '!', '[', ']', <esc>: exit
+- '0', 'z', space, backspace: go back one level
+- enter: left click
+- shift+enter: right click
+- shift+alt+enter: middle click
+- ctrl+shift+enter: left drag
+- ctrl+alt+shift+enter: double click
+- '!', '[', ']', esc: exit
 
 ## Branching Model
 
-http://nvie.com/posts/a-successful-git-branching-model/
-http://sandofsky.com/blog/git-workflow.html
+- http://nvie.com/posts/a-successful-git-branching-model/
+- http://sandofsky.com/blog/git-workflow.html
 
 ## Style
 
-http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
-http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py
+- http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
+- http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py
 
 ## License
 
