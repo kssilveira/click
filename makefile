@@ -21,20 +21,7 @@
 #
 # Author: silveira.kaue@gmail.com (Kaue Soares da Silveira)
 #
-# This is the makefile for the project.
+# This is the root makefile for the project.
 
-CXXFLAGS=-I. -Wall
-LDFLAGS = -lglut -lGLU -lGL -lX11 -lXtst
-OBJ=main.o \
-		click/click.o \
-		click/model.o \
-		click/navigator.o \
-		click/presenter.o \
-		click/view.o
-
-all: ../bin/click
-	../bin/click
-
-../bin/click: $(OBJ)
-	mkdir -p ../bin
-	$(CXX) -o $@ $^ $(LDFLAGS)
+all:
+	cd src && $(MAKE)

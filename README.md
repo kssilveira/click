@@ -15,6 +15,11 @@ divinding the screen recursively so that it is possible to address any pixels wi
 
 mouse movement, left/right/middle/double click, drag-and-drop.
 
+## Installing
+
+$ git clone git://github.com/kssilveira/click.git
+$ cd click && make
+
 ## Help
 
 create a keyboard shortcut that executes click (System->Preferences->Keyboard Shortcuts)
