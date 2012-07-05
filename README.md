@@ -17,14 +17,15 @@ mouse movement, left/right/middle/double click, drag-and-drop.
 
 ## Installing
 
-$ git clone git://github.com/kssilveira/click.git
-$ cd click && make
+    $ git clone git://github.com/kssilveira/click.git
+    $ cd click && make
 
 ## Help
 
 create a keyboard shortcut that executes click (System->Preferences->Keyboard Shortcuts)
 
 commands:
+
 - '1' to '9': move the mouse
 - '0', 'z', space, backspace: go back one level
 - enter: left click
@@ -36,13 +37,13 @@ commands:
 
 ## Branching Model
 
-- http://nvie.com/posts/a-successful-git-branching-model/
-- http://sandofsky.com/blog/git-workflow.html
+- [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
+- [Understanding the Git Workflow](http://sandofsky.com/blog/git-workflow.html)
 
 ## Style
 
-- http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
-- http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py
+- [Google C++ Style Guide](http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml)
+- [cpplint.py](http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py)
 
 ## License
 
